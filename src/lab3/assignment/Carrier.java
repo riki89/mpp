@@ -23,7 +23,7 @@ public class Carrier implements ICarrier{
 			if ( ((Package) this.ipackage).getWeight() < 3)
 				cost = 1.0;
 			else 
-				cost = 0.55;
+				cost = 0.55*((Package) this.ipackage).getWeight();
 			break;
 		case "FedEx":
 			double numberOfPound = ((Package) this.ipackage).getWeight();

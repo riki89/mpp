@@ -11,7 +11,7 @@ public class Application {
 	static List<IPackage> packages = new ArrayList<IPackage>();
 
 	public static void main(String[] args) {
-		Application.numberOfProducts = 1;
+		Application.numberOfProducts = 3;
 		
 		int i = 0;
 		
