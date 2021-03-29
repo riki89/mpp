@@ -1,50 +1,53 @@
 package lab3.assignment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Carrier implements ICarrier{
 	private String name;
-	private IPackage ipackage;
+	private String description;
+	private double weight;
+	private String zone;
+	private List<ICarrier> carriers;
 	
-	public Carrier(String name, IPackage ipackage) {
+	public Carrier(String name, String description, double weight, String zone) {
 		super();
 		this.name = name;
-		this.ipackage = ipackage;
+		this.description = description;
+		this.weight = weight;
+		this.zone = zone;
+		this.carriers = new ArrayList<ICarrier>();
 	}
 	
+	public void addCarrier(ICarrier c)
+	{
+		this.carriers.add(c);
+	}
+	
+	public List<ICarrier> getCarriers()
+	{
+		return this.carriers;
+	}
+
 	@Override
 	public double computeCost()
 	{
-		double cost = 0;
-		//System.out.println("Carrier name: "+this.name);
-		switch (this.name) {
-		case "UPS":
-			cost = 0.45 * ((Package) this.ipackage).getWeight();
-			break;
-		case "US Mail":
-			if ( ((Package) this.ipackage).getWeight() < 3)
-				cost = 1.0;
-			else 
-				cost = 0.55*((Package) this.ipackage).getWeight();
-			break;
-		case "FedEx":
-			double numberOfPound = ((Package) this.ipackage).getWeight();
-			switch (((Package) this.ipackage).getZone()) {
-			case "IA":
-				cost = Zone.IA.getValue() * numberOfPound;
-				break;
-			case "TX":
-				cost = Zone.TX.getValue() * numberOfPound;
-				break;
-			case "FL":
-				cost = Zone.FL.getValue() * numberOfPound;
-				break;
-			case "Others":
-				cost = Zone.Others.getValue() * numberOfPound;
-				break;
+		return 0.0;
+	}
+	
+	public double lowestCost()
+	{
+		double lowest = this.carriers.get(0).computeCost();
+		this.setName(((Carrier) this.carriers.get(0)).getName());
+		
+		for (ICarrier carrier : carriers) {
+			if (carrier.computeCost() < lowest)
+			{
+				this.setName(((Carrier) carrier).getName());
+				lowest = carrier.computeCost();
 			}
-			break;
 		}
-		//System.out.println("Compute cost: "+cost);
-		return cost;
+		return lowest;
 	}
 
 	public String getName() {
@@ -55,12 +58,28 @@ public class Carrier implements ICarrier{
 		this.name = name;
 	}
 
-	public IPackage getIpackage() {
-		return ipackage;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setIpackage(IPackage ipackage) {
-		this.ipackage = ipackage;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
+	public String getZone() {
+		return zone;
+	}
+
+	public void setZone(String zone) {
+		this.zone = zone;
 	}
 
 }

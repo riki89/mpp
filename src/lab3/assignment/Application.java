@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Application {
 	static int numberOfProducts = 0;
 	static Scanner sc = new Scanner(System.in);
-	static List<IPackage> packages = new ArrayList<IPackage>();
+	static List<ICarrier> carriers = new ArrayList<ICarrier>();
 
 	public static void main(String[] args) {
 		Application.numberOfProducts = 3;
@@ -30,18 +30,22 @@ public class Application {
 				e.printStackTrace();
 			}
 			String zone = chooseZone();
-			IPackage p = new Package(zone, desc, weight);
+			ICarrier pack = new Carrier("Package", desc, weight, zone);
 			
-			//add carrier to the product
-			((Package) p).addCarrier(new Carrier("UPS", p));
-			((Package) p).addCarrier(new Carrier("US Mail", p));
-			((Package) p).addCarrier(new Carrier("FedEx", p));
+			ICarrier ups = new UPS("UPS", desc, weight, zone);
+			ICarrier usMail = new USMail("US Mail", desc, weight, zone);
+			ICarrier fedex = new FedEx("FedEx", desc, weight, zone);
 			
-			Application.packages.add(p);
+			//add carrier to list
+			((Carrier) pack).addCarrier(ups);
+			((Carrier) pack).addCarrier(usMail);
+			((Carrier) pack).addCarrier(fedex);
+			
+			carriers.add(pack);
+			//System.out.println("Lowest cost: "+computeLowestCost());
 			i++;
 		}
 		outLowPrice();
-
 	}
 
 	/****************************************/
@@ -63,33 +67,28 @@ public class Application {
 		String rep = "Others";
 		switch (sc.nextInt())
 		{
-		case 1: rep = "IA";
-			break;
-		case 2: rep = "TX";
-		break;
-		case 3: rep = "FL";
-		break;
-		default: rep = "Others";
-		break;
+			case 1: rep = "IA";
+				break;
+			case 2: rep = "TX";
+				break;
+			case 3: rep = "FL";
+				break;
+			default: rep = "Others";
+				break;
 		}
 		return rep;
 		
 	}
 	
+	
 	public static void outLowPrice()
 	{
-		for (IPackage iPackage : packages) {
-			Package p = (Package) iPackage;
-			String carrierName = "";
-			for (ICarrier carrier : p.getCarriers()) {
-				Carrier c = (Carrier) carrier;
-				if (c.computeCost() == p.computeLowestCost())
-					carrierName = c.getName();
-			}
-			System.out.println(p.getDescription()+" $"+ p.computeLowestCost() + " "+ carrierName);
+		if (carriers.isEmpty())
+			System.out.println("No carrier found!");
+		
+		for (ICarrier carrier : carriers) {
+			System.out.println(((Carrier) carrier).getDescription()+" $"+ ((Carrier) carrier).lowestCost() + " "+ ((Carrier) carrier).getName());
 		}
-
 	}
-	
-
 }
+
