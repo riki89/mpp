@@ -33,7 +33,7 @@ public abstract class Employee {
 		PayCheck p = new PayCheck(grossSalary, 
 				PayCheckEnum.FICA.getValue()*grossSalary, PayCheckEnum.STATE.getValue()*grossSalary,
 				PayCheckEnum.LOCAL.getValue()*grossSalary, PayCheckEnum.MEDICARE.getValue()*grossSalary,
-				PayCheckEnum.SSN.getValue()*grossSalary, dr);
+				PayCheckEnum.SSN.getValue()*grossSalary, dr, this);
 		return p;
 	}
 	

@@ -10,9 +10,10 @@ public final class PayCheck {
 	private double medicare;
 	private double socialSecurity;
 	private DateRange payPeriod;
+	private Employee employee;
 	
 	public PayCheck(double grossPay, double fica, double state, double local, double medicare, double socialSecurity,
-			DateRange payPeriod) {
+			DateRange payPeriod, Employee emp) {
 		super();
 		this.grossPay = grossPay;
 		this.fica = fica;
@@ -21,6 +22,7 @@ public final class PayCheck {
 		this.medicare = medicare;
 		this.socialSecurity = socialSecurity;
 		this.payPeriod = payPeriod;
+		this.employee = emp;
 	}
 	
 	
@@ -63,5 +65,11 @@ public final class PayCheck {
 	}
 	public DateRange getPayPeriod() {
 		return payPeriod;
+	}
+
+
+
+	public Employee getEmployee() {
+		return employee;
 	}
 }
