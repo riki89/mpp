@@ -53,5 +53,47 @@ public class Department {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+	
+	/**Level 2**/
+	public double getSalary()
+	{
+		double totalSalary = 0;
+		for (Position position : positions) {
+			totalSalary += position.getSalary();
+		}
+		return totalSalary;
+	}
 
+	/*LEVEL 3*/
+	/*
+	public void printReportingHierarchy()
+	{
+		System.out.println("HEAD OF DEPARTMENT");
+		for (Position position : positions) {
+			if (position.)
+		}
+		System.out.print("  ");
+	}
+	*/
+	
+	//Week 3 - day 1
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj == null) return false;
+		if (obj.getClass() != getClass()) return false;
+		Department dep = (Department)obj;
+		if (dep.getName().equals(name) && dep.getLocation().equals(location))
+			return true;
+		else return false;
+	}
+	
+	//toString
+	@Override
+	public String toString() {
+		return "[\tName: "+this.name+" \n\tLocation: "+this.location+"\n]";
+	}
+//	
+//	private String name;
+//	private String location;
 }

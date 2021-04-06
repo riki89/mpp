@@ -52,8 +52,55 @@ public class Application {
 		dept2Marketing.setEmployee(empMarketDept2);
 		dept2Marketing.setEmployee(empMarketDept3);
 		
+		//week 3 - test equals method inside employee
+		//Question 1
+		//expected result: test 1: false
+		System.out.println("test 1: "+empDevDept1.equals(empMarketDept3));
+		Employee empTest = new Employee("101", "Ahmet", "AT", "Tayeb", LocalDate.of(1990, 1, 1), "123-299443", 5000, dept1Developer, dep1);
+		//expected result: test 2: true
+		System.out.println("test 2: "+empDevDept1.equals(empTest));
 		
-		company.printHierarchy();
+		//Question 2
+		//POSITION - equals method overriden
+		//expected result: test 3: false
+		System.out.println("test 3: "+dept1Developer.equals(dept1Marketing));
+		Position posTest = new Position("Developer", "Software Developement", dep1);
+		//expected result: test 4: true
+		System.out.println("test 4: "+dept1Developer.equals(posTest));
+		
+		//Question 3
+		Department depTest = new Department("Sales", "Los Angeles", company);
+		//expected result: test 5: false
+		System.out.println("test 5 - equals departments: "+dep1.equals(dep2));
+		//expected result: test 4: true
+		System.out.println("test 4 - different departments: "+dep1.equals(depTest));
+						
+		
+		//Question 4
+		//Test toString method
+		//Employee
+		System.out.println(empTest.toString());
+		//Question 5
+		//Position
+		System.out.println(posTest.toString());
+		//Question 6
+		//Department
+		System.out.println(depTest.toString());
+		
+		//Question 7
+		//hashCode
+		//Expected result for 2 equals employees
+		int result1 = empDevDept1.hashCode();
+		int result2 = empTest.hashCode();
+		System.out.println("HashCode1: "+result1+" - HashCode2: "+result2);
+		//different employee
+		System.out.println("HashCode1: "+result1+" - HashCode3: "+empMarketDept3.hashCode());
+		
+		//Question 8
+		System.out.printf("   EQUALS POSITIONS: Postion1 [HashCode: %d] - Positon 2[HASHCODE: %d] \n", dep1.hashCode(), depTest.hashCode());
+		System.out.printf("DIFFERENT POSITIONs: Postion1 [HashCode: %d] - Positon 2[HASHCODE: %d] \n", dep1.hashCode(), dep2.hashCode());
+		
+		//company.printHierarchy();
 		
 	}
 }

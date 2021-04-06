@@ -61,4 +61,14 @@ public class Company {
 		System.out.println("---------------END COMPANY--------------");
 	}
 	
+	/*Level 2*/
+	public double getSalary()
+	{
+		double totalSalary = 0;
+		for (Department department : departments) {
+			totalSalary += department.getSalary();
+		}
+		return totalSalary;
+	}
+	
 }
