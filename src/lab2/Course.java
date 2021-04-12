@@ -60,5 +60,9 @@ public class Course {
 			System.out.println(student.toString());
 		}
 	}
+	//Using Lambda expressions
+	public void showStudentsByFacultyLE() {
+		students.stream().forEach(System.out::println);
+	}
 
 }

@@ -114,9 +114,14 @@ public class ProcessingEmployees {
 		list.stream().filter(startByM).sorted(lastThenFirst).forEach(System.out::println);
 		
 		//3 - Print out all of the Employee objects whose last name begins with the letter ‘B’ and change their first name and last name to be All capital letters
-		System.out.println("Employee with last name started with letter 'B' and change first name and last name to capital letters");
+		System.out.println("3 - Employee with last name started with letter 'B' and change first name and last name to capital letters");
 		list.stream().filter(e -> (e.getLastName().toUpperCase().charAt(0) == 'B'))
-			.map(e -> e.getLastName().toUpperCase() +" "+ e.getFirstName().toUpperCase().concat(" "+e.getSalary()).concat(" "+e.getDepartment()))
+			.map(e -> {
+				String firstNameUpper = e.getFirstName().toUpperCase();
+				String lastNameUper = e.getLastName().toUpperCase();
+				return new Employee(firstNameUpper, lastNameUper, e.getSalary(), e.getDepartment());
+			})
+			//.map(e -> e.getLastName().toUpperCase() +" "+ e.getFirstName().toUpperCase().concat(" "+e.getSalary()).concat(" "+e.getDepartment()))
 			.forEach(System.out::println);
 		
 		//4 - Print out All of the employee objects, but if the last name begins with the letter ‘B’, then capitalize all the letters in the last name.
@@ -157,7 +162,7 @@ public class ProcessingEmployees {
 		//6)  Print out the average of all the salaries.
 		System.out.println("\n 6)  Print out the average of all the salaries.");
 		System.out.printf("Average of all the salaries: %,.2f",list.stream().mapToDouble(e -> e.getSalary()).average().getAsDouble());
-		//7)  Use the  ‘reduce’  method to print out the total salary of all employees.  
+		//7)  Use the  ‘reduce’  method to print out the total salary of all employees.
 		System.out.println("7)  Use the  ‘reduce’  method to print out the total salary of all employees.");
 		System.out.printf("\n Total salary of all employees: %,.2f",list.stream().mapToDouble(e -> e.getSalary()).reduce(0, (value1,value2) -> value1 + value2));
 		
@@ -170,4 +175,10 @@ public class ProcessingEmployees {
 		Stream.iterate(0, n -> n+2).limit(20).forEach(System.out::println);
 		
 	} // end main
+	
+	//
+	public int countWords(List<String> words, char c, char d, int len)
+	{
+		return (int) words.stream().filter(s -> s.length() == len && s.contains(c+"") && !s.contains(d+"")).count();
+	}
 } // end class ProcessingEmployees
