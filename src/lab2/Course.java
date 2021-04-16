@@ -59,10 +59,11 @@ public class Course {
 		for (Student student : students) {
 			System.out.println(student.toString());
 		}
+		
 	}
 	//Using Lambda expressions
 	public void showStudentsByFacultyLE() {
-		students.stream().forEach(System.out::println);
+		students.stream().map(s -> s.toString()).forEach(System.out::println);
 	}
 
 }

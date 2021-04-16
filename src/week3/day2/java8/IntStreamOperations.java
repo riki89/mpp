@@ -4,7 +4,7 @@ import java.util.stream.IntStream;
 
 public class IntStreamOperations {
 	public static void main(String[] args) {
-		int[] values = { 3, 10, 6, 1, 4, 8, 2, 5, 9, 7 };
+		int[] values = { 3, 10, 6, 1, 4, 8, 2, 5, 9, 7};
 
 		// display original values
 		System.out.print("Original values: "); // Lambda expression below
@@ -48,5 +48,6 @@ public class IntStreamOperations {
 
 		// sum range of integers from 1 to 10, inclusive
 		System.out.printf("Sum of integers from 1 to 10: %d%n", IntStream.rangeClosed(1, 10).sum());
+		IntStream.iterate(0, n -> n+1).skip(33).limit(10).forEach(v -> System.out.printf("%d ",v));
 	}
 } // end class IntStreamOperations

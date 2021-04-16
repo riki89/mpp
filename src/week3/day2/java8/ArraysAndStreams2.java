@@ -3,7 +3,6 @@ package week3.day2.java8;
 //Program 3: ArraysAndStreams2.java
 //Demonstrating lambdas and streams with an array of Strings.
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class ArraysAndStreams2 {

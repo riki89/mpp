@@ -36,15 +36,15 @@ public class DepartmentApplication
 		Person samHoward = new Faculty("Sam Howard","472-7222",55,9500);
 		Person johnDoodle = new Faculty("John Doodle","472-6190",39,8600);
 
-		dept.addPerson (frankMoore);
-		dept.addPerson(samHoward);
+		dept.addPerson(frankMoore);
+		dept.addPerson(samHoward );
 		dept.addPerson(johnDoodle);
 
 
 		// Create student objects
-		Person johnDoe = new Student("John Doe","472-1121",22,4.0);
-		Person maryJones = new Student("Mary Jones","472-7322",32,3.80);
-		Person leeJohnson = new Student("Lee Johnson","472-6009",19,3.65);
+		Person johnDoe = new Student("John Doe",       "472-1121", 22,4.0);
+		Person maryJones = new Student("Mary Jones",   "472-7322", 32,3.80);
+		Person leeJohnson = new Student("Lee Johnson", "472-6009", 19,3.65);
 
 		dept.addPerson (johnDoe);
 		dept.addPerson(maryJones);
@@ -227,6 +227,19 @@ However, this mistake below does show us How we could implement the code IF it w
 				course.showStudentsByFaculty();
 			}
 	   }
+	   
+	   //stream version
+	   list.stream().filter(c -> 
+	   	{
+	   		Boolean a = c.getFaculty().getName().equalsIgnoreCase(faculty);
+			
+				c.showStudentsByFaculty();
+			
+			return a;
+	   	});
+	   			
+	   //list.stream().filter(n -> n.getFaculty().getName().equalsIgnoreCase(faculty)).map(n -> {n.showStudentsByFaculty(); return n;});
+	   
 	   if (listVoid) {System.out.println("No Student found for this faculty");}
    }
    //-----------------

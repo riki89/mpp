@@ -101,6 +101,7 @@ public class ProcessingEmployees {
 		// average of Employee salaries with DoubleStream average method
 		System.out.printf("Average of Employees' salaries: %.2f%n",
 				list.stream().mapToDouble(Employee::getSalary).average().getAsDouble());
+		//
 		//HOME WORK
 		// 1)  Count the number of last names that begin with the letter ‘B’.  Print out this number.
 		Predicate<Employee> startByM = e -> (e.getLastName().toUpperCase().charAt(0) == 'B');

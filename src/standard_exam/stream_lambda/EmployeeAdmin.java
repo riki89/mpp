@@ -29,8 +29,10 @@ public class EmployeeAdmin {
 //				.map(Map.Entry::getValue)
 //				.collect(Collectors.toList());
 		
-		return table.entrySet().stream().filter(e -> socSecNums.contains(e.getValue().getSsn()) && e.getValue().getSalary() > 80000)
-				.map(Map.Entry::getValue)
+//		return table.entrySet().stream().filter(e -> socSecNums.contains(e.getValue().getSsn()) && e.getValue().getSalary() > 80000)
+//				.map(Map.Entry::getValue)
+//				.collect(Collectors.toList());
+		return table.values().stream().filter(e -> socSecNums.contains(e.getSsn()) && e.getSalary() > 80000)
 				.collect(Collectors.toList());
 			
 	}
